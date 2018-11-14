@@ -1,0 +1,63 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+.coin {
+  background: #ebebeb;
+  border: solid 1px #181818;
+  border-radius: 3px;
+  width: 280px;
+  height: auto;
+  padding: 8px;
+}
+.row1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+.coin-symbol {
+  justify-self: start;
+}
+.coin-rank {
+  justify-self: end;
+}
+.coin-name {
+  justify-self: start;
+}
+.coin-price {
+  justify-self: end;
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.row3 {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  justify-content: start;
+}
+
+.coin-history {
+  display: grid;
+  justify-items: start;
+}
+.coin-volume {
+  float: right;
+  justify-self: start;
+}

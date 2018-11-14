@@ -1,19 +1,13 @@
 import React, { Component } from "react";
 import Coins from "./Components/Coins";
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import "./App.css";
-
-const Count = ({ count, addOne, minOne }) => (
-  <div>
-    <h1>{count}</h1>
-    <button onClick={addOne}>+1</button>
-    <button onClick={minOne}>-1</button>
-  </div>
-);
 
 class App extends Component {
   state = {
-    count: 0,
-    coins: null
+    coins: null,
+    typing: ""
   };
   componentWillMount() {
     console.log("log will mount");
@@ -29,6 +23,12 @@ class App extends Component {
       });
     console.log("Component did mount log");
   }
+  handleChange = e => {
+    this.setState({
+      typing: e.target.value.toLowerCase()
+    });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     console.log("Component did update");
     console.log(prevState.count);
@@ -41,16 +41,7 @@ class App extends Component {
     }
     return true;
   }
-  addOne = () => {
-    this.setState(prevState => ({
-      count: prevState.count + 1
-    }));
-  };
-  minOne = () => {
-    this.setState({
-      count: this.state.count - 1
-    });
-  };
+
   render() {
     const coins = this.state.coins;
     console.log(coins);
@@ -58,15 +49,13 @@ class App extends Component {
     console.log("Loging from render method");
     return (
       <div className="App">
-        <h1>React Life Cycle Methods</h1>
-        <Count
-          count={this.state.count}
-          addOne={this.addOne}
-          minOne={this.minOne}
-        />
-        <div className="coins">
-          <Coins coins={coins} />;
+        <div>
+          <Header value={this.state.typing} handleChange={this.handleChange} />
         </div>
+        <div className="coins container">
+          <Coins coins={coins} typing={this.state.typing} />
+        </div>
+        <Footer copyrights="&copy; 2018" />
       </div>
     );
   }
