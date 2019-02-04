@@ -29,6 +29,32 @@ class App extends Component {
     });
   };
 
+  sortCoins = type => {
+    const unsortedCoins = [...this.state.coins];
+    unsortedCoins.sort((a, b) => {
+      let valueA;
+      let valueB;
+      if (type === "rank" || type === "price_usd") {
+        valueA = parseFloat(a[type]);
+        valueB = parseFloat(b[type]);
+      } else {
+        valueA = a[type].toLowerCase();
+        valueB = b[type].toLowerCase();
+      }
+
+      if (valueA < valueB) {
+        return -1;
+      }
+      if (valueA > valueB) {
+        return 1;
+      }
+      return 0;
+    });
+    this.setState({
+      coins: unsortedCoins
+    });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     console.log("Component did update");
     console.log(prevState.count);
@@ -49,6 +75,12 @@ class App extends Component {
     console.log("Loging from render method");
     return (
       <div className="App">
+        {/* <Drop nSelect={this.sortName} placeholder="Select an option" /> */}
+        {/* <Drop onSelect={this.sortCoins} /> */}
+        <button onClick={() => this.sortCoins("name")}>By name</button>
+        <button onClick={() => this.sortCoins("rank")}>By Rank</button>
+        <button onClick={() => this.sortCoins("price_usd")}>By Price</button>
+
         <div>
           <Header value={this.state.typing} handleChange={this.handleChange} />
         </div>

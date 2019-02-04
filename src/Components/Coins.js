@@ -6,7 +6,10 @@ const Coins = props => {
     props.coins != null ? (
       props.coins
         .filter(coin => {
-          return coin.name.toLowerCase().startsWith(props.typing);
+          return (
+            coin.name.toLowerCase().startsWith(props.typing) ||
+            coin.symbol.toLowerCase().startsWith(props.typing)
+          );
         })
         .map(coin => {
           return (
